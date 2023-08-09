@@ -8,9 +8,10 @@
 
 #define XP_FILETYPE 28
 #define VISTA_FILETYPE 25
-#define WIN10_FILETYPE 40
+#define WIN10_FILETYPE 37
+#define WIN11_FILETYPE 40
 
-#define FILETYPE WIN10_FILETYPE
+#define FILETYPE WIN11_FILETYPE
 
 #pragma comment(lib, "ntdll.lib")
 
@@ -105,8 +106,8 @@ void FindFile(const TCHAR* file)
     for (ULONG i = 0; i < handleCount; i++)
     {
         SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX handle = handleInfo->Handles[i];
-        if (handle.ObjectTypeIndex != FILETYPE)//on xp is 28
-            continue;
+        //if (handle.ObjectTypeIndex != FILETYPE)//on xp is 28
+        //    continue;
 
         HANDLE hProcess = OpenProcess(PROCESS_DUP_HANDLE, FALSE, handle.UniqueProcessId);
         if (hProcess == NULL)
